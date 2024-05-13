@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Добавить/Редактировать рецепт{% endblock %}
+{% block content %}
+    <h2 class="centered-title">{{ form.instance.pk|default:"Добавить" }} рецепт</h2>
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-button">Сохранить</button>
+        </form>
+    </div>
+{% endblock %}

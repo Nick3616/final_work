@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+<div class="login-form">
+    <h2>Вход</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if error_message %}
+            <div class="error">{{ error_message }}</div>
+        {% endif %}
+        <button type="submit" class="submit-button">Войти</button>
+    </form>
+</div>
+{% endblock %}

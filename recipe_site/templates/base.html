@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Сайт рецептов{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'all_recipes' %}">Все рецепты</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'add_recipe' %}">Добавить рецепт</a></li>
+                    <li class="user-info">{{ user.username }} (<a href="{% url 'logout' %}">Выход</a>)</li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Вход</a></li>
+                    <li><a href="{% url 'register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>© 2024 Рецепты. Никулин Станислав.</p>
+    </footer>
+</body>
+</html>
